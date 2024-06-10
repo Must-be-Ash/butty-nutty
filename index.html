@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link Press Counter</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Link Press Counter</h1>
+  <p id="count">This link has been pressed 0 times.</p>
+  <button onclick="incrementCount()">Press Me</button>
+
+  <script>
+    function incrementCount() {
+      let count = localStorage.getItem('pressCount') || 0;
+      count = parseInt(count) + 1;
+      localStorage.setItem('pressCount', count);
+      document.getElementById('count').innerText = `This link has been pressed ${count} times.`;
+    }
+
+    // Update the count on page load
+    document.addEventListener('DOMContentLoaded', (event) => {
+      let count = localStorage.getItem('pressCount') || 0;
+      document.getElementById('count').innerText = `This link has been pressed ${count} times.`;
+    });
+  </script>
+</body>
+</html>
